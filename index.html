@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Scripts & Codes Board</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "dayjs": "https://esm.sh/dayjs@1.11.9"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main id="app">
+    <section class="composer" aria-label="Post composer">
+      <div class="row">
+        <input id="title" placeholder="Title (optional)" />
+        <select id="type" aria-label="Type selector">
+          <option value="script">Script</option>
+          <option value="roblox-code">Roblox Code</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <textarea id="content" placeholder="Paste your script or code here. Posting loadstring or similar remote-execution snippets is blocked." rows="8" autofocus spellcheck="false"></textarea>
+
+      <div class="row controls">
+        <input id="author" placeholder="Name (optional)" />
+        <button id="postBtn" class="primary">Post</button>
+      </div>
+
+      <div id="error" class="error" aria-live="polite"></div>
+    </section>
+
+    <section class="toolbar">
+      <input id="search" placeholder="Search titles, authors, content..." />
+      <select id="filterType">
+        <option value="all">All types</option>
+        <option value="script">Script</option>
+        <option value="roblox-code">Roblox Code</option>
+        <option value="other">Other</option>
+      </select>
+      <button id="clearAll" title="Clear all local posts">Clear</button>
+    </section>
+
+    <!-- Library section: shared scripts visible to everyone (stored in localStorage) -->
+    <section class="library">
+      <div class="library-header">
+        <div class="tabs" role="tablist" aria-label="Library tabs">
+          <button class="tab active" data-type="all">All</button>
+          <button class="tab" data-type="script">Scripts</button>
+          <button class="tab" data-type="roblox-code">Roblox Codes</button>
+          <button class="tab" data-type="other">Other</button>
+        </div>
+        <div class="lib-actions">
+          <button id="refreshLibrary" title="Refresh library">Refresh</button>
+          <button id="clearLibrary" title="Clear library">Clear Library</button>
+        </div>
+      </div>
+      <div id="libraryFeed" class="feed" aria-live="polite">
+        <!-- library items injected here -->
+      </div>
+    </section>
+
+    <section id="feed" class="feed" aria-live="polite">
+      <!-- posts injected here -->
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
